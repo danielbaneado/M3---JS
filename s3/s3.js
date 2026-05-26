@@ -15,6 +15,7 @@ addBtn.addEventListener("click", (e) => {
         message.classList.remove("error-deleted")
         message.classList.add("added")
         userInput.value= ""
+        console.log("Usuario agregado, laik")
         form.reset()
     }
     else{
