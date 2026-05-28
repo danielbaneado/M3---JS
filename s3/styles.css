@@ -106,9 +106,8 @@ ul {
     color: #fff;
 }
 
-.guess-button,
-.del-btn,
-.rematch {
+.add-btn,
+.del-btn{
     padding: 10px 20px;
     font-size: 1.2em;
     border: none;
@@ -117,12 +116,12 @@ ul {
     transition: background-color 0.3s;
 }
 
-.guess-button {
+.add-btn {
     background-color: #4CAF50;
     color: white;
 }
 
-.guess-button:hover {
+.add-btn:hover {
     background-color: #45a049;
 }
 
@@ -131,7 +130,7 @@ ul {
     color: white;
 }
 
-.skip-button:hover {
+.skip-btn:hover {
     background-color: #da190b;
 }
 
