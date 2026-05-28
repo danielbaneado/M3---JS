@@ -3,19 +3,27 @@ let message= document.querySelector("h2")
 const userInput= document.getElementById("note-input")
 const addBtn= document.getElementById("add-btn")
 const noteList= document.getElementById("note-list")
+
+function getNotes(){
+    return JSON.parse(localStorage.getItem("notes")) || []
+}
+
+function saveNote(notes){
+    localStorage.setItem("notes", JSON.stringify(notes))
+}
+
 addBtn.addEventListener("click", (e) => {
     e.preventDefault()
-    if (userInput.value.trim() !== ""){
-        const newNote= document.createElement("li")
-        newNote.innerHTML+= `<div class="note-container"> 
-        <p>${userInput.value}</p><button class="del-btn" type="button">Delete</button>
-        </div>`
-        noteList.appendChild(newNote)
+    const note= userInput.value.trim()
+    if (note !== ""){
+        const savedNotes= getNotes()
+        savedNotes.push(note)
+        saveNote(savedNotes)
+        showNotes()
         message.textContent= `Note sucessfully added.`
         message.classList.remove("error-deleted")
         message.classList.add("added")
-        userInput.value= ""
-        console.log("Usuario agregado, laik")
+        console.log("Nota agregada, laik")
         form.reset()
     }
     else{
@@ -23,8 +31,23 @@ addBtn.addEventListener("click", (e) => {
         message.classList.remove("added")
         message.classList.add("error-deleted")
     }
-    const delBtn= document.querySelector(".del-btn")
-    delBtn.addEventListener("click", () => {
-        console.log("sirvo")
-    })
 })
+function showNotes(){
+    let allNotes= getNotes()
+    noteList.innerHTML= ""
+    allNotes.forEach((note, idx) => {
+        const newNote= document.createElement("li")
+        noteList.appendChild(newNote)
+        newNote.innerHTML+= `<div class="note-container"> 
+        <p>${note}</p><button class="del-btn" type="button">Delete</button>
+        </div>`
+        const delBtn= newNote.querySelector(".del-btn")
+        delBtn.addEventListener("click", () => {
+            console.log("Elemento eliminado de la lista")
+            allNotes.splice(idx, 1)
+            noteList.removeChild(newNote)
+            saveNote(allNotes)
+        })
+    })
+}
+showNotes()
