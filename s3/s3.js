@@ -3,7 +3,6 @@ let message= document.querySelector("h2")
 const userInput= document.getElementById("note-input")
 const addBtn= document.getElementById("add-btn")
 const noteList= document.getElementById("note-list")
-
 function getNotes(){
     return JSON.parse(localStorage.getItem("notes")) || [] //Return an empty list if there arent saved notes
 }
