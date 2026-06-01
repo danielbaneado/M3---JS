@@ -14,8 +14,8 @@ function saveNote(notes){
 }
 
 async function saveJSON(notes){
-    const date= new Date().toLocaleString().slice(0, 9) //Takes date and hour in local format
-    const hour= new Date().toLocaleString().slice(10, 15)
+    const date= new Date().toLocaleString().slice(0, 8) //Takes date and hour in local format
+    const hour= new Date().toLocaleString().slice(10, 14)
     const lastNote= notes.at(-1) //Takes last note from local storage array to add it to json
     if (!lastNote){
         return
@@ -43,8 +43,8 @@ async function deleteNote(noteID){
 }
 
 async function editNote(newContent, noteToUpdate){
-    const newDate= new Date().toLocaleString().slice(0, 9)
-    const newHour= new Date().toLocaleString().slice(10, 15)
+    const newDate= new Date().toLocaleString().slice(0, 8)
+    const newHour= new Date().toLocaleString().slice(10, 14)
     const updatedNote= { //Same method used in saveJSON(), but specifying put method
         "content": newContent, //Overwrites note content and date/hour
         "date": newDate,
